@@ -1,5 +1,6 @@
 describe("index", () => {
   test("empty test case", () => {
-    /* do nothing */
+    /* try to fail */
+    expect(false).toBe(true);
   });
 });

@@ -1,0 +1,59 @@
+{
+  "dependencies": {
+    "@material-ui/core": "^3.0.3",
+    "@types/react": "^16.4.13",
+    "@types/react-dom": "^16.0.7",
+    "react": "^16.5.0",
+    "react-dom": "^16.5.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.2",
+    "awesome-typescript-loader": "^5.2.1",
+    "husky": "^0.14.3",
+    "jest": "^23.5.0",
+    "lint-staged": "^7.2.2",
+    "prettier": "^1.14.2",
+    "source-map-loader": "^0.2.4",
+    "ts-jest": "^23.1.4",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.15.0",
+    "tslint-react": "^3.6.0",
+    "typescript": "^3.0.3",
+    "webpack": "^4.17.2",
+    "webpack-cli": "^3.1.0"
+  },
+  "scripts": {
+    "build": "webpack",
+    "test": "jest",
+    "lint": "tslint -c tslint.json --project .",
+    "pretty": "prettier --write \"**/*.{ts,tsx,js}\"",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "concurrent": false,
+    "linters": {
+      "**/*.{ts,tsx}": [
+        "npm run lint -- --fix",
+        "git add"
+      ],
+      "**/*.{ts,tsx,js}": [
+        "prettier --write",
+        "git add"
+      ]
+    }
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  }
+}

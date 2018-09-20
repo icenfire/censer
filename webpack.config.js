@@ -4,8 +4,11 @@ const path = require("path"),
 
 module.exports = {
   entry: {
-    app: ["./src/app/App.tsx", "webpack-hot-middleware/client"],
-    vendor: ["react", "react-dom"]
+    app: ["./src/app/App.tsx", "webpack-hot-middleware/client"]
+  },
+  externals: {
+    react: "React",
+    "react-dom": "ReactDOM"
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -19,7 +22,7 @@ module.exports = {
     rules: [
       {
         test: /\.(ts|tsx)$/,
-        loader: "ts-loader"
+        loader: "awesome-typescript-loader"
       },
       { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
     ]

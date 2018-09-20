@@ -7,7 +7,7 @@ declare let module: any;
 
 const App = () => (
   <Button variant="contained" color="primary">
-    Hello World! Testing
+    Hello World!
   </Button>
 );
 

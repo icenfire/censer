@@ -1,12 +1,30 @@
 language: node_js
 node_js:
-  - "stable"
+  - stable
+script:
+  - yarn lint
+  - yarn pretty
+  - yarn test
+  - yarn build
 cache:
+  yarn: true
   directories:
     - node_modules
-script:
-  - npm test
-  - npm run build
 branches:
   only:
-    - "master"
+    - master
+    - develop
+before_deploy: ./build-tools/before-deploy.sh
+deploy:
+  - provider: firebase
+    on:
+      branch: develop
+    project: ci-nightly
+    skip_cleanup: true
+    token: $FIREBASE_TOKEN
+  - provider: firebase
+    on:
+      branch: master
+    project: ci-staging-d289a
+    skip_cleanup: true
+    token: $FIREBASE_TOKEN

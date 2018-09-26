@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "develop": "ci-nightly",
+    "staging": "ci-staging-d289a"
+  }
+}

@@ -12,19 +12,19 @@ cache:
     - node_modules
 branches:
   only:
-    - master
-    - develop
+    - trunk
+    - release
 before_deploy: ./build-tools/before-deploy.sh
 deploy:
   - provider: firebase
     on:
-      branch: develop
+      branch: trunk
     project: ci-nightly
     skip_cleanup: true
     token: $FIREBASE_TOKEN
   - provider: firebase
     on:
-      branch: master
+      branch: release
     project: ci-staging-d289a
     skip_cleanup: true
     token: $FIREBASE_TOKEN

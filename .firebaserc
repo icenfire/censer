@@ -1,6 +1,6 @@
 {
   "projects": {
-    "develop": "ci-nightly",
+    "trunk": "ci-nightly",
     "staging": "ci-staging-d289a"
   }
 }

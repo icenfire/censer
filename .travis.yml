@@ -19,12 +19,13 @@ deploy:
   - provider: firebase
     on:
       branch: trunk
-    project: ci-nightly
+	    project: $FIREBASE_PROJECT_NIGHTLY
+
     skip_cleanup: true
     token: $FIREBASE_TOKEN
   - provider: firebase
     on:
       branch: release
-    project: ci-staging-d289a
+	    project: $FIREBASE_PROJECT_STAGING
     skip_cleanup: true
     token: $FIREBASE_TOKEN

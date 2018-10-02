@@ -1,8 +1,8 @@
 import { InputAdornment, TextField } from "@material-ui/core";
-import { Lock } from "@material-ui/icons";
+import { LockOutlined } from "@material-ui/icons";
 import * as React from "react";
 
-export default function PasswordTextField() {
+export default () => {
   return (
     <TextField
       id="standard-password-input"
@@ -14,10 +14,10 @@ export default function PasswordTextField() {
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">
-            <Lock />
+            <LockOutlined />
           </InputAdornment>
         )
       }}
     />
   );
-}
+};

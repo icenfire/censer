@@ -1,6 +1,6 @@
 import * as React from "react";
-import EmailTextField from "./EmailTextField";
-import PasswordTextField from "./PasswordTextField";
+import EmailTextField from "./TextFields/EmailTextField";
+import PasswordTextField from "./TextFields/PasswordTextField";
 
 class LoginPage extends React.Component {
   constructor(props: any) {

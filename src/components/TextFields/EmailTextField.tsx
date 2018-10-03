@@ -1,5 +1,5 @@
 import { InputAdornment, TextField } from "@material-ui/core";
-import { EmailOutlined } from "@material-ui/icons";
+import { Person } from "@material-ui/icons";
 import * as React from "react";
 
 export default () => {
@@ -15,7 +15,7 @@ export default () => {
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">
-            <EmailOutlined />
+            <Person />
           </InputAdornment>
         )
       }}

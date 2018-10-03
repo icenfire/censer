@@ -1,5 +1,5 @@
 import { InputAdornment, TextField } from "@material-ui/core";
-import { LockOutlined } from "@material-ui/icons";
+import { Lock } from "@material-ui/icons";
 import * as React from "react";
 
 export default () => {
@@ -14,7 +14,7 @@ export default () => {
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">
-            <LockOutlined />
+            <Lock />
           </InputAdornment>
         )
       }}

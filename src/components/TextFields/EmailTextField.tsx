@@ -2,7 +2,7 @@ import { InputAdornment, TextField } from "@material-ui/core";
 import { Person } from "@material-ui/icons";
 import * as React from "react";
 
-export default () => {
+export default function EmailTextField() {
   return (
     <TextField
       id="outlined-email-input"
@@ -21,4 +21,4 @@ export default () => {
       }}
     />
   );
-};
+}

@@ -3,15 +3,9 @@ import * as React from "react";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 
-class CheckboxLabel extends React.Component {
+class CheckboxLabel extends React.PureComponent {
   public state = {
     checked: true
-  };
-
-  public handleChange = () => (
-    event: React.ChangeEvent<HTMLInputElement>
-  ): void => {
-    this.setState({ checked: event.target.checked });
   };
 
   public render() {
@@ -20,7 +14,7 @@ class CheckboxLabel extends React.Component {
         control={
           <Checkbox
             checked={this.state.checked}
-            onChange={this.handleChange()}
+            onChange={this.handleChange}
             value="checked"
             color="primary"
           />
@@ -29,6 +23,10 @@ class CheckboxLabel extends React.Component {
       />
     );
   }
+
+  private handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    this.setState({ checked: event.target.checked });
+  };
 }
 
 export default CheckboxLabel;

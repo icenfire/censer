@@ -3,7 +3,7 @@ import CheckboxLabel from "./SelectionControls/CheckboxLabel";
 import EmailTextField from "./TextFields/EmailTextField";
 import PasswordTextField from "./TextFields/PasswordTextField";
 
-class LoginPage extends React.Component {
+class LoginPage extends React.PureComponent {
   constructor(props: any) {
     super(props);
   }

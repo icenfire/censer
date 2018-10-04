@@ -20,7 +20,7 @@ const externals = {
 module.exports = (env, argv) => {
   return {
     entry: {
-      app: ["./src/app/App.tsx"]
+      app: [path.resolve(__dirname, "src", "index.tsx")]
     },
     output: {
       path: path.resolve(__dirname, "dist"),
@@ -43,7 +43,7 @@ module.exports = (env, argv) => {
 
     plugins: [
       new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, "src", "app", "index.html"),
+        template: path.resolve(__dirname, "src", "index.html"),
         templateParameters: {
           version: package.version,
           dependencies: Externals.getTags(

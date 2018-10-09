@@ -4,6 +4,8 @@ import DontHaveAnAccount from "./Level1/Buttons/DontHaveAnAccount";
 import SignInButton from "./Level1/Buttons/SignInButton";
 import SignUpButton from "./Level1/Buttons/SignUpButton";
 
+import TermsAndConditionsDialog from "./Level1/Dialogs/TermsAndConditionsDialog";
+
 import ForgotPasswordLink from "./Level1/Links/ForgotPasswordLink";
 
 import RememberMeCheckbox from "./Level1/SelectionControls/RememberMeCheckbox";
@@ -44,6 +46,8 @@ class LoginPage extends React.PureComponent {
         <DontHaveAnAccount /> Needs to have color control of the button label
         <div />
         <AlreadyHaveAnAccount /> Needs to have color control of the button label
+        <div />
+        <TermsAndConditionsDialog />
         <div />
       </div>
     );

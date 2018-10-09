@@ -1,21 +1,22 @@
 import { InputAdornment, TextField } from "@material-ui/core";
-import { Email } from "@material-ui/icons";
+import { CalendarToday } from "@material-ui/icons";
 import * as React from "react";
 
-export default function EmailTextField() {
+export default function DateOfBirthTextField() {
   return (
     <TextField
-      id="outlined-email-input"
-      label="Email Address"
-      className="email"
-      type="email"
-      name="email"
-      autoComplete="email"
+      id="standard-dob-input"
+      label="Date Of Birth"
+      className="dob"
+      type="date"
       margin="normal"
+      InputLabelProps={{
+        shrink: true
+      }}
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">
-            <Email />
+            <CalendarToday />
           </InputAdornment>
         )
       }}

@@ -15,7 +15,7 @@ import EmailTextField from "./Level1/TextFields/EmailTextField";
 import NameTextField from "./Level1/TextFields/NameTextField";
 import PasswordTextField from "./Level1/TextFields/PasswordTextField";
 
-class LoginPage extends React.PureComponent {
+export default class LoginPage extends React.PureComponent {
   constructor(props: any) {
     super(props);
   }
@@ -53,5 +53,3 @@ class LoginPage extends React.PureComponent {
     );
   }
 }
-
-export default LoginPage;

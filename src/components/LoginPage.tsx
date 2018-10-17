@@ -12,14 +12,11 @@ import RememberMeCheckbox from "./Level1/SelectionControls/RememberMeCheckbox";
 
 import DateOfBirthTextField from "./Level1/TextFields/DateOfBirthTextField";
 import EmailTextField from "./Level1/TextFields/EmailTextField";
+import LoginTextFields from "./Level1/TextFields/LoginTextFields";
 import NameTextField from "./Level1/TextFields/NameTextField";
 import PasswordTextField from "./Level1/TextFields/PasswordTextField";
 
 export default class LoginPage extends React.PureComponent {
-  constructor(props: any) {
-    super(props);
-  }
-
   public render() {
     const LoginStyle = {
       justifyContent: "right"
@@ -27,14 +24,22 @@ export default class LoginPage extends React.PureComponent {
 
     return (
       <div className="LoginDetails" style={LoginStyle}>
-        <EmailTextField />
+        <LoginTextFields type="email" />
+        <div />
+        <LoginTextFields type="password" />
+        <div />
+        <LoginTextFields type="name" />
+        <div />
+        <LoginTextFields type="dateOfBirth" />
+        <div />
+        {/* <EmailTextField />
         <div />
         <PasswordTextField />
         <div />
         <NameTextField />
         <div />
         <DateOfBirthTextField />
-        <div />
+        <div /> */}
         <RememberMeCheckbox /> Needs to turn the label colour to primary
         <div />
         <ForgotPasswordLink />

@@ -3,7 +3,7 @@ import * as React from "react";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 
-class CheckboxLabel extends React.PureComponent {
+class RememberMeCheckbox extends React.PureComponent {
   public state = {
     checked: true
   };
@@ -29,4 +29,4 @@ class CheckboxLabel extends React.PureComponent {
   };
 }
 
-export default CheckboxLabel;
+export default RememberMeCheckbox;

@@ -1,5 +1,5 @@
 import { InputAdornment, TextField } from "@material-ui/core";
-import { CalendarToday } from "@material-ui/icons";
+import CalendarToday from "@material-ui/icons/CalendarToday";
 import * as React from "react";
 
 export default function DateOfBirthTextField() {

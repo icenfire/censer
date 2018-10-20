@@ -1,5 +1,5 @@
 import { InputAdornment, TextField } from "@material-ui/core";
-import { Email } from "@material-ui/icons";
+import Email from "@material-ui/icons/Email";
 import * as React from "react";
 
 export default function EmailTextField() {

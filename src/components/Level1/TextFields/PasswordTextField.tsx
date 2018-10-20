@@ -1,5 +1,5 @@
 import { InputAdornment, TextField } from "@material-ui/core";
-import { Lock } from "@material-ui/icons";
+import Lock from "@material-ui/icons/Lock";
 import * as React from "react";
 
 export default function PasswordTextField() {

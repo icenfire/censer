@@ -1,5 +1,5 @@
 import { InputAdornment, TextField } from "@material-ui/core";
-import { Person } from "@material-ui/icons";
+import Person from "@material-ui/icons/Person";
 import * as React from "react";
 
 export default function NameTextField() {

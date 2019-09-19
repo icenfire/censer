@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "react-app",
+    "prettier/react",
+    "prettier/babel",
+    "prettier/flowtype",
+    "plugin:prettier/recommended"
+  ],
+  "overrides": [
+    {
+      "files": ["**/*.ts?(x)"],
+      "extends": ["prettier/@typescript-eslint"]
+    }
+  ]
+}

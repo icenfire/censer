@@ -1,9 +1,14 @@
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 import * as React from "react";
-import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import SignInPage from "./pages/SignInPage";
 import HomePage from "./pages/HomePage";
 import SignUpPage from "./pages/SignUpPage";
+import firebase from "../firebase";
+import { withAuthentication } from "../Session/withAuthentication";
+import * as routes from "../constants/routes";
+import { Navigation } from "../components/Navigation";
+import { AccountPage } from "./pages/AccountPage";
 
 const theme = createMuiTheme({
   palette: {
@@ -11,28 +16,53 @@ const theme = createMuiTheme({
   }
 });
 
-export default () => (
-  <BrowserRouter>
-    <MuiThemeProvider theme={theme}>
-      <ul>
-        <li>
-          <Link to={"/"}>Home</Link>
-        </li>
-        <li>
-          <Link to={"/signup"}>SignUpPage</Link>
-        </li>
-        <li>
-          <Link to={"/login"}>LoginPage</Link>
-        </li>
-      </ul>
-      <hr />
-      <div>
-        <Switch>
-          <Route exact={true} path={"/"} component={HomePage} />
-          <Route exact={true} path={"/signup"} component={SignUpPage} />
-          <Route exact={true} path={"/login"} component={LoginPage} />
-        </Switch>
-      </div>
-    </MuiThemeProvider>
-  </BrowserRouter>
-);
+class AppComponent extends React.Component {
+  constructor(props: any) {
+    super(props);
+
+    this.state = {
+      authUser: null
+    };
+  }
+
+  public componentDidMount() {
+    firebase.auth().onAuthStateChanged((authUser: any) => {
+      authUser
+        ? this.setState(() => ({ authUser }))
+        : this.setState(() => ({ authUser: null }));
+    });
+  }
+
+  public render() {
+    return (
+      <BrowserRouter>
+        <MuiThemeProvider theme={theme}>
+          <Route component={Navigation} />
+          <hr />
+          <div>
+            <Switch>
+              <Route exact={true} path={routes.HOME} component={HomePage} />
+              <Route
+                exact={true}
+                path={routes.SIGN_UP}
+                component={SignUpPage}
+              />
+              <Route
+                exact={true}
+                path={routes.SIGN_IN}
+                component={SignInPage}
+              />
+              <Route
+                exact={true}
+                path={routes.ACCOUNT}
+                component={AccountPage}
+              />
+            </Switch>
+          </div>
+        </MuiThemeProvider>
+      </BrowserRouter>
+    );
+  }
+}
+
+export const App = withAuthentication(AppComponent);

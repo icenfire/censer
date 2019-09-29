@@ -14,10 +14,21 @@ import DateOfBirthTextField from "../Level1/TextFields/DateOfBirthTextField";
 import EmailTextField from "../Level1/TextFields/EmailTextField";
 import NameTextField from "../Level1/TextFields/NameTextField";
 import PasswordTextField from "../Level1/TextFields/PasswordTextField";
+import { Theme, createStyles, makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      color: "white",
+      backgroundColor: theme.palette.background.default
+    }
+  })
+);
 
 export default function HomePage() {
+  const classes = useStyles();
   return (
-    <div>
+    <div className={classes.root}>
       HomePage
       <EmailTextField />
       <div />

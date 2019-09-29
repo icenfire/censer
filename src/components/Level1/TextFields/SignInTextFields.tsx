@@ -7,12 +7,12 @@ import Email from "@material-ui/icons/Email";
 import Lock from "@material-ui/icons/Lock";
 import Person from "@material-ui/icons/Person";
 
-export interface ILoginTextFieldsProps {
+export interface ISignInTextFieldsProps {
   type: string;
 }
 
-export default class LoginTextFields extends React.Component<
-  ILoginTextFieldsProps,
+export default class SignITextFields extends React.Component<
+  ISignInTextFieldsProps,
   any
 > {
   public render() {

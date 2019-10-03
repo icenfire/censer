@@ -26,34 +26,31 @@ function SignInPage({ auth, authError, emailLogin }: any) {
       password
     });
   }
-
   return (
     <div>
-      <div>
-        <h2>Auth</h2>
-        {!isLoaded(auth) ? (
-          <span>Loading...</span>
-        ) : isEmpty(auth) ? (
-          <div>
-            <input
-              value={values.email}
-              onChange={handleChange("email")}
-              type="email"
-              placeholder="Email Address"
-            />
-            <input
-              value={values.password}
-              onChange={handleChange("password")}
-              type="Password"
-              placeholder="password Address"
-            />
-            <button onClick={loginWithEmail}>Login With Email</button>
-          </div>
-        ) : (
-          <pre>{JSON.stringify(auth, null, 2)}</pre>
-        )}
-        {authError ? authError.message : <div></div>}
-      </div>
+      <h2>Auth</h2>
+      {!isLoaded(auth) ? (
+        <span>Loading...</span>
+      ) : isEmpty(auth) ? (
+        <div>
+          <input
+            value={values.email}
+            onChange={handleChange("email")}
+            type="email"
+            placeholder="Email Address"
+          />
+          <input
+            value={values.password}
+            onChange={handleChange("password")}
+            type="Password"
+            placeholder="password Address"
+          />
+          <button onClick={loginWithEmail}>Login With Email</button>
+        </div>
+      ) : (
+        <pre>{JSON.stringify(auth, null, 2)}</pre>
+      )}
+      {authError ? authError.message : <div></div>}
     </div>
   );
 }

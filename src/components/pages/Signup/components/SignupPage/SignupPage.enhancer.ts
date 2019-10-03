@@ -10,7 +10,7 @@ export default compose(
   withRouter,
   connect(({ firebase: { auth, authError } }: any) => ({ auth, authError })),
   withHandlers({
-    emailSignup: ({ firebase, showError }: any) => (creds: any) =>
+    emailSignup: ({ firebase }: any) => (creds: any) =>
       firebase
         .createUser(creds, {
           email: creds.email,

@@ -3,7 +3,7 @@ const projectId = process.env.REACT_APP_FIREBASE_PROJECT_ID;
 const appId = process.env.REACT_APP_FIREBASE_APP_ID;
 const messagingSenderId = process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID;
 
-export const config = {
+export const configFirebase = {
   apiKey,
   projectId,
   appId,
@@ -11,4 +11,13 @@ export const config = {
   databaseURL: `https://${projectId}.firebaseio.com`,
   storageBucket: `${projectId}.appspot.com`,
   messagingSenderId
+};
+
+export const reduxFirebaseConfig = {
+  enableLogging: false
+};
+
+export default {
+  configFirebase,
+  reduxFirebaseConfig
 };

@@ -1,14 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { App } from "./components/App";
-import { Provider } from "react-redux";
-import store from "./store";
+import App from "./components/App";
+import createStore from "./store/createStore";
 import * as serviceWorker from "./serviceWorker";
 
+const initialState = window.___INITIAL_STATE__ || {
+  firebase: { authError: null }
+};
+
+const store = createStore(initialState);
+const routes = require("./components/pages/routes").default(store);
+
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <App store={store} routes={routes} />,
   document.getElementById("root")
 );
 

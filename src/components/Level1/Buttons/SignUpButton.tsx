@@ -1,5 +1,5 @@
-import Button from "@material-ui/core/Button"
-import * as React from "react"
+import Button from "@material-ui/core/Button";
+import * as React from "react";
 
 export default function SignUpButton({ onClick }: any) {
   return (
@@ -12,5 +12,5 @@ export default function SignUpButton({ onClick }: any) {
     >
       Sign up
     </Button>
-  )
+  );
 }

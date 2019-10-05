@@ -11,6 +11,20 @@ import NameTextField from "../Level1/TextFields/NameTextField";
 import PasswordTextField from "../Level1/TextFields/PasswordTextField";
 import Typography from "@material-ui/core/Typography";
 import MyCheckBox from "../Level1/SelectionControls/MyCheckbox";
+import { logIn } from "../../action/authentication";
+import { ThunkDispatch } from "redux-thunk";
+import { AnyAction } from "redux";
+import {
+  ExtendedFirebaseInstance,
+  ExtendedAuthInstance,
+  ExtendedStorageInstance
+} from "react-redux-firebase";
+import { connect } from "react-redux";
+interface ExtraArgument {
+  getFirebase: () => ExtendedFirebaseInstance &
+    ExtendedAuthInstance &
+    ExtendedStorageInstance;
+}
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -26,7 +40,9 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export interface Props {}
+export interface Props {
+  signIn: (credentials: { email: string; password: string }) => void;
+}
 
 export interface State {
   email: string;
@@ -38,7 +54,7 @@ export interface State {
   signInPage: boolean;
 }
 
-export default function SignInUpPage(props: Props) {
+function SignInUpPageComponent(props: Props) {
   const classes = useStyles();
   const [values, setValues] = React.useState<State>({
     email: "",
@@ -138,7 +154,9 @@ export default function SignInUpPage(props: Props) {
             variant="contained"
             color="primary"
             fullWidth
-            onClick={signInUpOnClick}
+            onClick={() => {
+              props.signIn({ email: values.email, password: values.pw });
+            }}
           >
             <Typography color="textPrimary">
               {values.signInPage ? "Sign in" : "Sign up"}
@@ -155,3 +173,20 @@ export default function SignInUpPage(props: Props) {
     </>
   );
 }
+
+const mapDispatchToProps = (
+  dispatch: ThunkDispatch<any, ExtraArgument, AnyAction>
+) => {
+  return {
+    signIn: (credentials: { email: string; password: string }) => {
+      dispatch(logIn(credentials));
+    }
+  };
+};
+
+const SignInUpPage = connect(
+  undefined,
+  mapDispatchToProps
+)(SignInUpPageComponent);
+
+export default SignInUpPage;

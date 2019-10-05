@@ -18,13 +18,13 @@ import MenuIcon from "@material-ui/icons/Menu";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import SearchIcon from "@material-ui/icons/Search";
 
-interface IAppBarLeaderMainState {
+interface IAppBarLeaderDateState {
   open: boolean;
 }
 
-export default class AppBarLeaderMain extends React.Component<
+export default class AppBarLeaderDate extends React.Component<
   any,
-  IAppBarLeaderMainState
+  IAppBarLeaderDateState
 > {
   public state = {
     open: false

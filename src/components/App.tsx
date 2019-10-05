@@ -1,38 +1,48 @@
-import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
+import { Container, CssBaseline } from "@material-ui/core";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import * as React from "react";
-import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
-import HomePage from "./pages/HomePage";
-import SignUpPage from "./pages/SignUpPage";
+import { BrowserRouter, Route } from "react-router-dom";
+import { MuiThemeProvider } from "@material-ui/core/styles";
+import { createMuiTheme } from "@material-ui/core";
+import SignInUpPageStatic from "./Pages/SignInUpPageStatic";
 
 const theme = createMuiTheme({
   palette: {
-    type: "dark"
+    type: "dark",
+    primary: {
+      main: "#C6B28E",
+      dark: "#616161"
+    },
+    secondary: {
+      main: "#4D4D4D",
+      light: "#D6CKBC"
+    }
   }
 });
 
-export default () => (
-  <BrowserRouter>
-    <MuiThemeProvider theme={theme}>
-      <ul>
-        <li>
-          <Link to={"/"}>Home</Link>
-        </li>
-        <li>
-          <Link to={"/signup"}>SignUpPage</Link>
-        </li>
-        <li>
-          <Link to={"/login"}>LoginPage</Link>
-        </li>
-      </ul>
-      <hr />
-      <div>
-        <Switch>
-          <Route exact={true} path={"/"} component={HomePage} />
-          <Route exact={true} path={"/signup"} component={SignUpPage} />
-          <Route exact={true} path={"/login"} component={LoginPage} />
-        </Switch>
-      </div>
-    </MuiThemeProvider>
-  </BrowserRouter>
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    container: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      padding: 0,
+      minHeight: "100vh"
+      // height: "500px"
+    }
+  })
 );
+
+export default function App() {
+  const classes = useStyles();
+  return (
+    <BrowserRouter>
+      <MuiThemeProvider theme={theme}>
+        <Container maxWidth="xs" className={classes.container}>
+          <CssBaseline />
+          <Route path="/" component={SignInUpPageStatic} />
+        </Container>
+      </MuiThemeProvider>
+    </BrowserRouter>
+  );
+}

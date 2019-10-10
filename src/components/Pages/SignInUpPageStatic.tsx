@@ -11,7 +11,7 @@ import NameTextField from "../Level1/TextFields/NameTextField";
 import PasswordTextField from "../Level1/TextFields/PasswordTextField";
 import Typography from "@material-ui/core/Typography";
 import MyCheckBox from "../Level1/SelectionControls/MyCheckbox";
-import { logIn } from "../../action/authentication";
+import { logIn, signUp } from "../../action/authentication";
 import { ThunkDispatch } from "redux-thunk";
 import { AnyAction } from "redux";
 import {
@@ -20,12 +20,12 @@ import {
   ExtendedStorageInstance
 } from "react-redux-firebase";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 interface ExtraArgument {
   getFirebase: () => ExtendedFirebaseInstance &
     ExtendedAuthInstance &
     ExtendedStorageInstance;
 }
-
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     grid: {
@@ -39,11 +39,20 @@ const useStyles = makeStyles((theme: Theme) =>
     }
   })
 );
-
 export interface Props {
   signIn: (credentials: { email: string; password: string }) => void;
+  authError: string;
+  auth: {
+    isLoaded: boolean;
+    uid: string;
+  };
+  signUp: (newUser: {
+    email: string;
+    password: string;
+    name: string;
+    birthday: string;
+  }) => void;
 }
-
 export interface State {
   email: string;
   pw: string;
@@ -66,6 +75,8 @@ function SignInUpPageComponent(props: Props) {
     signInPage: true
   });
 
+  if (props.auth.isLoaded && props.auth.uid) return <Redirect to="/home" />;
+
   const handleChange = (name: keyof State) => (
     event: React.ChangeEvent<HTMLInputElement>
   ) => setValues({ ...values, [name]: event.target.value });
@@ -80,35 +91,6 @@ function SignInUpPageComponent(props: Props) {
       ...values,
       [values.signInPage ? "rememberMe" : "readTAndC"]: event.target.checked
     });
-
-  const signInUpOnClick = () => {
-    // if (values.signInPage) {
-    //   console.log("Remember me: " + values.rememberMe);
-    //   Authentication.signInWithEmailAndPassword(values.email, values.pw);
-    // } else {
-    //   if (values.readTAndC) {
-    //     auth()
-    //       .createUserWithEmailAndPassword(values.email, values.pw)
-    //       .then(() => {
-    //         auth().onAuthStateChanged(user => {
-    //           if (user) {
-    //             db.collection("members").add({
-    //               userID: user.uid,
-    //               name: values.name,
-    //               dob: values.dob
-    //             });
-    //           }
-    //         });
-    //       })
-    //       .then(() => {
-    //         console.log("Success!: readTAndC=" + values.readTAndC);
-    //       })
-    //       .catch(error => console.error("Error signing up: ", error));
-    //   } else {
-    //     console.log("Error: readTAndC=" + values.readTAndC);
-    //   }
-    // }
-  };
 
   return (
     <>
@@ -155,7 +137,14 @@ function SignInUpPageComponent(props: Props) {
             color="primary"
             fullWidth
             onClick={() => {
-              props.signIn({ email: values.email, password: values.pw });
+              values.signInPage
+                ? props.signIn({ email: values.email, password: values.pw })
+                : props.signUp({
+                    email: values.email,
+                    password: values.pw,
+                    name: values.name,
+                    birthday: values.dob
+                  });
             }}
           >
             <Typography color="textPrimary">
@@ -164,6 +153,7 @@ function SignInUpPageComponent(props: Props) {
           </Button>
         </Grid>
       </Grid>
+      {props.authError ? <p>{props.authError}</p> : null}
       <footer className={classes.footer}>
         <ChangeSignInUp
           signInPage={values.signInPage}
@@ -173,6 +163,24 @@ function SignInUpPageComponent(props: Props) {
     </>
   );
 }
+export interface AuthState {
+  auth: {
+    authError: string;
+  };
+  firebase: {
+    auth: {
+      isLoaded: boolean;
+      uid: string;
+    };
+  };
+}
+
+const mapStateToProps = (state: AuthState) => {
+  return {
+    authError: state.auth.authError,
+    auth: state.firebase.auth
+  };
+};
 
 const mapDispatchToProps = (
   dispatch: ThunkDispatch<any, ExtraArgument, AnyAction>
@@ -180,12 +188,20 @@ const mapDispatchToProps = (
   return {
     signIn: (credentials: { email: string; password: string }) => {
       dispatch(logIn(credentials));
+    },
+    signUp: (newUser: {
+      email: string;
+      password: string;
+      name: string;
+      birthday: string;
+    }) => {
+      dispatch(signUp(newUser));
     }
   };
 };
 
 const SignInUpPage = connect(
-  undefined,
+  mapStateToProps,
   mapDispatchToProps
 )(SignInUpPageComponent);
 

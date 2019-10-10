@@ -31,3 +31,45 @@ export const logIn = (credentials: { email: string; password: string }) => {
       });
   };
 };
+
+export const signOut = () => {
+  return (
+    dispatch: ThunkDispatch<any, ExtraArgument, AnyAction>,
+    getState: any,
+    { getFirebase }: ExtraArgument
+  ) => {
+    const firebase = getFirebase();
+
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        dispatch({ type: "SIGNOUT_SUCCESS" });
+      });
+  };
+};
+
+export const signUp = (newUser: {
+  email: string;
+  password: string;
+  name: string;
+  birthday: string;
+}) => {
+  return (
+    dispatch: ThunkDispatch<any, ExtraArgument, AnyAction>,
+    getState: any,
+    { getFirebase }: ExtraArgument
+  ) => {
+    const firebase = getFirebase();
+
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(newUser.email, newUser.password)
+      .then(() => {
+        dispatch({ type: "SIGNUP_SUCCESS" });
+      })
+      .catch((err: any) => {
+        dispatch({ type: "SIGNUP_ERROR", err });
+      });
+  };
+};

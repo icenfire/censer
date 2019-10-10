@@ -10,6 +10,7 @@ import {
 import { firestoreReducer, createFirestoreInstance } from "redux-firestore";
 import { Provider } from "react-redux";
 import { authReducer } from "../reducers/authReducer";
+
 declare global {
   interface Window {
     __REDUX_DEVTOOLS_EXTENSION__: any;

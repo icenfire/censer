@@ -1,5 +1,4 @@
 import React, { Fragment, useEffect, useState } from "react";
-import Authentication from "../../auth/Authentication";
 import SignOutButton from "../Level1/Buttons/SignOutButton";
 import PapersFull from "../Level2/Cards/PapersFull";
 import Dates from "../Level2/Dates";
@@ -36,12 +35,12 @@ export default function LoginPage() {
   return (
     <Fragment>
       <PapersFull />
-      <SignOutButton onClick={signOut} />
+      {/* <SignOutButton onClick={signOut} /> */}
       <Dates dates={dates} />
     </Fragment>
   );
 }
 
-function signOut() {
-  Authentication.signOut();
-}
+// function signOut() {
+//   Authentication.signOut();
+// }

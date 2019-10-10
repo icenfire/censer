@@ -5,6 +5,8 @@ import { BrowserRouter, Route } from "react-router-dom";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import { createMuiTheme } from "@material-ui/core";
 import SignInUpPageStatic from "./Pages/SignInUpPageStatic";
+import Navbar from "./layout/Navbar";
+import HomePage from "./Pages/HomePage";
 
 const theme = createMuiTheme({
   palette: {
@@ -33,6 +35,17 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
+const LoginContainer = () => (
+  <Route exact path="/" component={SignInUpPageStatic} />
+);
+
+const DefaultContainer = () => (
+  <>
+    <Navbar />
+    <Route path="/home" component={HomePage} />
+  </>
+);
+
 export default function App() {
   const classes = useStyles();
   return (
@@ -40,7 +53,8 @@ export default function App() {
       <MuiThemeProvider theme={theme}>
         <Container maxWidth="xs" className={classes.container}>
           <CssBaseline />
-          <Route path="/" component={SignInUpPageStatic} />
+          <Route exact path="/" component={LoginContainer} />
+          <Route component={DefaultContainer} />
         </Container>
       </MuiThemeProvider>
     </BrowserRouter>

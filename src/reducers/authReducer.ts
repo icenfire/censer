@@ -1,4 +1,4 @@
-interface AuthState {
+export interface AuthState {
   authError: null | string;
 }
 
@@ -8,7 +8,7 @@ const initState: AuthState = {
 
 export const authReducer = (
   state: AuthState = initState,
-  action: { type: string }
+  action: { type: string; err: { message: string } }
 ) => {
   switch (action.type) {
     case "LOGIN_ERROR":
@@ -22,6 +22,21 @@ export const authReducer = (
       return {
         ...state,
         authError: null
+      };
+    case "SIGNOUT_SUCCESS":
+      console.log("signout success");
+      return state;
+    case "SIGNUP_SUCCESS":
+      console.log("signup success");
+      return {
+        ...state,
+        authError: null
+      };
+    case "SIGNUP_ERROR":
+      console.log("signup error");
+      return {
+        ...state,
+        authError: action.err.message
       };
     default:
       return state;

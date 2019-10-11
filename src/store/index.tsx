@@ -18,7 +18,8 @@ declare global {
 }
 
 const reduxFirebaseConfig = {
-  enableLogging: false
+  userProfile: "users",
+  useFirestoreForProfile: true
 };
 
 const rootReducer = combineReducers({

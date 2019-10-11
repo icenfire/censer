@@ -21,9 +21,10 @@ interface ExtraArgument {
 
 export interface Props {
   signOut: () => void;
+  name: string;
 }
 
-const options = ["LOG OUT"];
+const options = ["LOG OUT", "CLOSE"];
 
 const ITEM_HEIGHT = 48;
 
@@ -40,12 +41,15 @@ function Navbar(props: Props) {
       case "LOG OUT":
         props.signOut();
         break;
+      case "CLOSE":
+        setAnchorEl(null);
+        break;
     }
-    setAnchorEl(null);
   };
 
   return (
     <div>
+      {props.name}
       <IconButton
         aria-label="more"
         aria-controls="long-menu"
@@ -81,6 +85,15 @@ function Navbar(props: Props) {
   );
 }
 
+const mapStateToProps = (state: {
+  firebase: { profile: { name: string } };
+}) => {
+  console.log("navbar", state);
+  return {
+    name: state.firebase.profile.name
+  };
+};
+
 const mapDispatchToProps = (
   dispatch: ThunkDispatch<any, ExtraArgument, AnyAction>
 ) => {
@@ -90,6 +103,6 @@ const mapDispatchToProps = (
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Navbar);

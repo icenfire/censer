@@ -65,6 +65,16 @@ export const signUp = (newUser: {
     firebase
       .auth()
       .createUserWithEmailAndPassword(newUser.email, newUser.password)
+      .then((resp: any) => {
+        return firebase
+          .firestore()
+          .collection("users")
+          .doc(resp.user.uid)
+          .set({
+            name: newUser.name,
+            birthday: newUser.birthday
+          });
+      })
       .then(() => {
         dispatch({ type: "SIGNUP_SUCCESS" });
       })

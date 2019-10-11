@@ -25,7 +25,6 @@ export interface State {
 }
 
 const mapStateToProps = (state: State) => {
-  console.log("homePage", state);
   return {
     auth: state.firebase.auth
   };

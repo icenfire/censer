@@ -88,7 +88,6 @@ function Navbar(props: Props) {
 const mapStateToProps = (state: {
   firebase: { profile: { name: string } };
 }) => {
-  console.log("navbar", state);
   return {
     name: state.firebase.profile.name
   };
